@@ -4,16 +4,19 @@ import com._32bit.exchangeRate.controller.dto.request.FilterRequest;
 import com._32bit.exchangeRate.repository.model.CrossRate;
 import com._32bit.exchangeRate.repository.model.ExchangeRate;
 import jakarta.persistence.criteria.Predicate;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.util.Objects;
 
+@Slf4j
 public class CrossRateSpecification {
 
     private static final String CURRENCY_CODE = "currencyCode";
     private static final String CREATED_DATE = "createDate";
 
     public static Specification<CrossRate> get(FilterRequest filterRequest) {
+        log.info("Data is checked according to currency code and create date.");
         return ((root, query, criteriaBuilder) -> {
             Predicate conjunction = criteriaBuilder.conjunction();
 

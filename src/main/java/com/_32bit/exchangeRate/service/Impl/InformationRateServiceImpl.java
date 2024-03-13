@@ -9,6 +9,7 @@ import com._32bit.exchangeRate.repository.model.InformationRate;
 import com._32bit.exchangeRate.repository.specification.InformationRateSpecification;
 import com._32bit.exchangeRate.service.FilterTypeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class InformationRateServiceImpl implements FilterTypeService {
 
     private final InformationRateRepository informationRateRepository;
@@ -25,6 +27,7 @@ public class InformationRateServiceImpl implements FilterTypeService {
 
     @Override
     public DataResponse filter(FilterRequest filterRequest) {
+        log.info("Get InformationRate from DB");
         Specification<InformationRate> specification = InformationRateSpecification.get(filterRequest);
         Sort sort = Sort.by(Sort.Direction.DESC, CREATED_DATE);
         List<InformationRate> all = informationRateRepository.findAll(specification, sort);

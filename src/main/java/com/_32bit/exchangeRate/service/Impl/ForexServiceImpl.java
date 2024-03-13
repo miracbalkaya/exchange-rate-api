@@ -9,6 +9,7 @@ import com._32bit.exchangeRate.repository.model.ExchangeRate;
 import com._32bit.exchangeRate.repository.specification.ForexRateSpecification;
 import com._32bit.exchangeRate.service.FilterTypeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class ForexServiceImpl implements FilterTypeService {
 
@@ -25,7 +27,7 @@ public class ForexServiceImpl implements FilterTypeService {
 
     @Override
     public DataResponse filter(FilterRequest filterRequest) {
-
+        log.info("Get ExchangeRate from DB");
         Specification<ExchangeRate> specification = ForexRateSpecification.get(filterRequest);
         Sort sort = Sort.by(Sort.Direction.DESC, CREATED_DATE);
         List<ExchangeRate> all = exchangeRateRepository.findAll(specification, sort);

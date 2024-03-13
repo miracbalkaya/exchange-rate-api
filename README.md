@@ -6,7 +6,7 @@ This project is developed with Java 17 and above and built using Spring Boot 3.2
 
 The project uses port: `8080`
 
-API to request: http://localhost:8080/api/rates
+API to request: http://localhost:8080/api/v1/rates
 
 type parameters: `FOREX, BANKNOTE, CROSS, INFORMATION, or null`
 

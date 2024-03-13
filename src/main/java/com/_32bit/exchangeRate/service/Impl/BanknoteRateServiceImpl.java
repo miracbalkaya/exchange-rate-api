@@ -8,6 +8,7 @@ import com._32bit.exchangeRate.repository.BanknoteRateRepository;
 import com._32bit.exchangeRate.repository.model.BanknoteRate;
 import com._32bit.exchangeRate.repository.specification.BanknoteRateSpecification;
 import com._32bit.exchangeRate.service.FilterTypeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class BanknoteRateServiceImpl implements FilterTypeService {
 
     private final BanknoteRateRepository banknoteRateRepository;
@@ -25,6 +27,7 @@ public class BanknoteRateServiceImpl implements FilterTypeService {
 
     @Override
     public DataResponse filter(FilterRequest filterRequest) {
+        log.info("Get BanknoteRate from DB");
         Specification<BanknoteRate> specification = BanknoteRateSpecification.get(filterRequest);
         Sort sort = Sort.by(Sort.Direction.DESC, CREATED_DATE);
         List<BanknoteRate> all = banknoteRateRepository.findAll(specification, sort);

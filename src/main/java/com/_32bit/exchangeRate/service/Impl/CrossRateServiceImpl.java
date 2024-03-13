@@ -9,6 +9,7 @@ import com._32bit.exchangeRate.repository.model.CrossRate;
 import com._32bit.exchangeRate.repository.specification.CrossRateSpecification;
 import com._32bit.exchangeRate.service.FilterTypeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class CrossRateServiceImpl  implements FilterTypeService {
 
     private final CrossRateRepository crossRateRepository;
@@ -26,7 +28,7 @@ public class CrossRateServiceImpl  implements FilterTypeService {
 
     @Override
     public DataResponse filter(FilterRequest filterRequest) {
-
+        log.info("Get CrossRate from DB");
         Specification<CrossRate> specification = CrossRateSpecification.get(filterRequest);
         Sort sort = Sort.by(Sort.Direction.DESC, CREATED_DATE);
         List<CrossRate> all = crossRateRepository.findAll(specification, sort);
