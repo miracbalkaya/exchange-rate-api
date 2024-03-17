@@ -17,16 +17,16 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(propOrder = {"date", "forex", "banknote", "cross", "information"})
 public class DataResponse {
-    @XmlElementWrapper(name = "Forex") // Wrap Forex elements
+    @XmlElementWrapper(name = "Forex")
     @XmlElement(name = "Currency")
     private List<CurrencyDTO> forex;
-    @XmlElementWrapper(name = "Banknote") // Wrap Banknote elements
+    @XmlElementWrapper(name = "Banknote")
     @XmlElement(name = "Currency")
     private List<CurrencyDTO> banknote;
-    @XmlElementWrapper(name = "Cross") // Wrap Cross elements
+    @XmlElementWrapper(name = "Cross")
     @XmlElement(name = "Currency")
     private List<CurrencyDTO> cross;
-    @XmlElementWrapper(name = "Information") // Wrap Information elements
+    @XmlElementWrapper(name = "Information")
     @XmlElement(name = "Currency")
     private List<CurrencyDTO> information;
     @XmlElement(name = "date")

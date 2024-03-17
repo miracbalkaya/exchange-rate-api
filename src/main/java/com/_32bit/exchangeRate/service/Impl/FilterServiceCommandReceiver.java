@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class FilterServiceFactoryImpl implements FilterService {
+public class FilterServiceCommandReceiver implements FilterService {
 
     private final Map<FilterType, FilterTypeService> filterTypeServiceMap;
     private final ExchangeRateServiceImpl exchangeRateService;
 
-    public FilterServiceFactoryImpl(List<FilterTypeService> filterTypeServices, ExchangeRateServiceImpl exchangeRateService) {
+    public FilterServiceCommandReceiver(List<FilterTypeService> filterTypeServices, ExchangeRateServiceImpl exchangeRateService) {
         this.filterTypeServiceMap = filterTypeServices
                 .stream()
                 .collect(Collectors.toMap(FilterTypeService::getFilterType, Function.identity()));
